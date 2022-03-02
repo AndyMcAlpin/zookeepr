@@ -1,5 +1,5 @@
 const express = require('express');
-const { animals } = require('./api/animals.json');
+const { animals } = require('./data/animals.json');
 const fs = require('fs');
 const path = require('path');
 
@@ -29,7 +29,7 @@ function filterByQuery(query, animalsArray) {
             // For each trait being targeted by the filter, the filteredResults
             // array will then contain only the entries that contain the trait,
             // so at the end we'll have an array of animals that have every one 
-            // of the traits when the .forEach() loop is finished.
+            // of the traits when the .forEach() loop is finished. 123test
             filteredResults = filteredResults.filter(
                 animal => animal.personalityTraits.indexOf(trait) !== -1
             );
@@ -56,7 +56,7 @@ function createNewAnimal(body, animalsArray) {
     const animal = body;
     animalsArray.push(animal);
     fs.writeFileSync(
-        path.join(__dirname, './api/animals.json'),
+        path.join(__dirname, './data/animals.json'),
         JSON.stringify({ animals: animalsArray }, null, 2)
     );
     return animal;
